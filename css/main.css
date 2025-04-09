@@ -1,0 +1,111 @@
+
+/* Main Section */
+.main-section {
+    /* put the background color to the whole front page */
+    /* background-color: #E2F0FE; */
+    margin-top: 60px;
+    display: flex;
+    justify-content: center;
+}
+
+.main-left {
+    width: 50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-right {
+    width: 50vw;
+    display: flex;
+    justify-content: center;
+}
+
+.hero_line {
+    
+    font-size: 2rem;
+    color: #0056B3;
+    /* white-space: pre-line; */
+    line-height: 4.5rem;
+}
+
+.main-button {
+    font-size: 1rem;
+    font-weight: 800;
+    margin-top: 2rem;
+    margin-right: 4.7rem;
+    border: 0;
+    border-radius: 6px;
+    width: 25rem;
+    height: 3rem;
+}
+
+.main-right img {
+    width: 30rem;
+    height: 30rem;
+    border-radius: 150px;
+}
+
+/* /Main Section */
+
+/* Services section */
+
+.services {
+    padding-top: 5rem;
+    margin-left: 2.375rem;
+    box-sizing: border-box;
+  }
+ 
+  .service-cards {
+    display: flex;
+    justify-content: space-evenly;
+    margin-top: 2rem;
+  }
+ 
+  .service-card {
+    padding: 3.75rem 2.19rem;
+    background-color: #F8FAFF;
+    margin-right: 3%;
+    text-align: center;
+    box-sizing: border-box;
+    transition: all 1s;
+  }
+ 
+  .service-card__description {
+    text-align: left;
+    color: rgb(13, 0, 61);
+    font-weight: 520;
+    line-height: 1.69rem;
+  }
+ 
+  .service-card__icon {
+    width: 180px;
+  }
+ 
+  .service-card__title {
+    margin-top: 0;
+    font-size: 1.25rem;
+    margin-bottom: 1.25rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #05364D;
+  }
+ 
+  .service-card__link {
+    font-weight: 600;
+    text-decoration: none;
+    position: relative;
+    color: #551A8B;
+  }
+ 
+  .service-card:hover {
+    background-color: #5f30ff;
+    box-shadow: 10px 10px 9px 0px #4913fd2d;
+  }
+ 
+  .service-card:hover .service-card__title,
+  .service-card:hover .service-card__description,
+  .service-card:hover .service-card__link {
+    color: #ffffff;
+  }

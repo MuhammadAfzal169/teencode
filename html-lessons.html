@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Learn HTML - Fun Interactive Lessons</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #58CC02;
+            --primary-dark: #58A700;
+            --secondary: #FFC800;
+            --text-dark: #3C3C3C;
+            --text-light: #6F6F6F;
+            --white: #FFFFFF;
+            --background: #FFF5F5;
+            --wrong: #FF4B4B;
+            --correct: #58CC02;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--background);
+            color: var(--text-dark);
+        }
+
+        .header {
+            background: var(--white);
+            padding: 1rem;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+        }
+
+        .progress-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .hearts {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .heart {
+            color: #FF4B4B;
+            font-size: 1.5rem;
+        }
+
+        .progress-bar {
+            flex: 1;
+            height: 16px;
+            background: #E5E5E5;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--primary);
+            width: 0%;
+            transition: width 0.3s ease;
+            border-radius: 8px;
+        }
+
+        .main-container {
+            max-width: 800px;
+            margin: 100px auto 40px;
+            padding: 2rem;
+        }
+
+        .lesson-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            margin-bottom: 2rem;
+        }
+
+        .question {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .code-context {
+            background: #F8F8F8;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+            font-family: monospace;
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            text-align: center;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+        }
+
+        .option {
+            background: var(--white);
+            border: 2px solid #E5E5E5;
+            border-radius: 15px;
+            padding: 1rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .option:hover {
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        .option.selected {
+            border-color: var(--primary);
+            background: #F7FFE5;
+        }
+
+        .option.correct {
+            border-color: var(--correct);
+            background: #E5FFE5;
+        }
+
+        .option.wrong {
+            border-color: var(--wrong);
+            background: #FFE5E5;
+        }
+
+        .option-number {
+            width: 30px;
+            height: 30px;
+            background: #E5E5E5;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--text-light);
+        }
+
+        .check-button {
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 15px;
+            padding: 1rem 2rem;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            width: 100%;
+            margin-top: 2rem;
+        }
+
+        .check-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .check-button:disabled {
+            background: #E5E5E5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .feedback {
+            margin-top: 1.5rem;
+            padding: 1rem;
+            border-radius: 12px;
+            display: none;
+        }
+
+        .feedback.correct {
+            display: block;
+            background: #E5FFE5;
+            border: 1px solid var(--correct);
+            color: var(--correct);
+        }
+
+        .feedback.wrong {
+            display: block;
+            background: #FFE5E5;
+            border: 1px solid var(--wrong);
+            color: var(--wrong);
+        }
+
+        .mascot {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 120px;
+            height: 120px;
+            background: url('https://raw.githubusercontent.com/duolingo/duolingo-data/master/images/owl-happy.svg') no-repeat center;
+            background-size: contain;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="progress-container">
+            <div class="hearts">
+                <i class="fas fa-heart heart"></i>
+                <i class="fas fa-heart heart"></i>
+                <i class="fas fa-heart heart"></i>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <div class="lesson-card">
+            <div class="question">Which HTML tag creates a clickable link?</div>
+            <div class="code-context">
+                I want to create a link to Google:<br>
+                _____ href="https://google.com">Click here</a>
+            </div>
+            <div class="options-grid">
+                <div class="option" data-correct="true">
+                    <span class="option-number">1</span>
+                    <code>&lt;a</code>
+                </div>
+                <div class="option">
+                    <span class="option-number">2</span>
+                    <code>&lt;link</code>
+                </div>
+                <div class="option">
+                    <span class="option-number">3</span>
+                    <code>&lt;url</code>
+                </div>
+                <div class="option">
+                    <span class="option-number">4</span>
+                    <code>&lt;href</code>
+                </div>
+            </div>
+            <div class="feedback"></div>
+            <button class="check-button" disabled>Check Answer</button>
+        </div>
+    </main>
+
+    <div class="mascot"></div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const options = document.querySelectorAll('.option');
+            const checkButton = document.querySelector('.check-button');
+            const feedback = document.querySelector('.feedback');
+            const progressFill = document.querySelector('.progress-fill');
+            const hearts = document.querySelectorAll('.heart');
+            let selectedOption = null;
+            let lives = 3;
+
+            options.forEach(option => {
+                option.addEventListener('click', function() {
+                    options.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    selectedOption = this;
+                    checkButton.disabled = false;
+                });
+            });
+
+            checkButton.addEventListener('click', function() {
+                if (!selectedOption) return;
+
+                const isCorrect = selectedOption.getAttribute('data-correct') === 'true';
+                
+                options.forEach(opt => {
+                    opt.classList.remove('correct', 'wrong');
+                });
+                
+                if (isCorrect) {
+                    selectedOption.classList.add('correct');
+                    feedback.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-check-circle"></i>
+                            <div>
+                                <strong>Excellent!</strong>
+                                <p>The &lt;a&gt; tag is perfect for creating links. Keep up the great work!</p>
+                            </div>
+                        </div>
+                    `;
+                    feedback.className = 'feedback correct';
+                    progressFill.style.width = '100%';
+                    
+                    options.forEach(opt => opt.style.pointerEvents = 'none');
+                    checkButton.disabled = true;
+                    
+                    setTimeout(() => {
+                        checkButton.textContent = 'Continue →';
+                        checkButton.disabled = false;
+                        checkButton.style.background = '#58CC02';
+                    }, 1500);
+                } else {
+                    selectedOption.classList.add('wrong');
+                    feedback.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <i class="fas fa-times-circle"></i>
+                            <div>
+                                <strong>Not quite!</strong>
+                                <p>Try again! Think about which tag is specifically for creating clickable links.</p>
+                            </div>
+                        </div>
+                    `;
+                    feedback.className = 'feedback wrong';
+                    
+                    lives--;
+                    hearts[lives].style.opacity = '0.3';
+                    
+                    if (lives === 0) {
+                        checkButton.textContent = 'Try Again';
+                        checkButton.style.background = '#FF4B4B';
+                        options.forEach(opt => opt.style.pointerEvents = 'none');
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html> 

@@ -1,0 +1,3084 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="TeenCode - Learn HTML through fun, interactive lessons">
+    <meta name="keywords" content="HTML, coding, web development, learn to code">
+    <title>TeenCode - Code. Create. Conquer.</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #58CC02;
+            --primary-dark: #58A700;
+            --secondary: #FFC800;
+            --accent: #FF4B4B;
+            --text-dark: #3C3C3C;
+            --text-light: #6F6F6F;
+            --white: #FFFFFF;
+            --background: #FFF5F5;
+            --dark-background: #1A1B26;
+            --card-background: #24283B;
+            --text-muted: #A9B1D6;
+            --header-bg: rgba(26, 27, 38, 0.8);
+            --section-bg: rgba(36, 40, 59, 0.5);
+            --border-color: rgba(169, 177, 214, 0.1);
+            --success-color: #9ECE6A;
+            --warning-color: #E0AF68;
+            --primary-gradient: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            --secondary-gradient: linear-gradient(135deg, var(--secondary) 0%, #FFA500 100%);
+            --accent-color: var(--accent);
+        }
+
+        [data-theme="light"] {
+            --primary: #58CC02;
+            --primary-dark: #58A700;
+            --secondary: #FFC800;
+            --accent: #FF4B4B;
+            --text-dark: #3C3C3C;
+            --text-light: #6F6F6F;
+            --white: #FFFFFF;
+            --background: #FFF5F5;
+            --dark-background: #F5F7FF;
+            --card-background: #FFFFFF;
+            --text-muted: #4A5568;
+            --header-bg: rgba(245, 247, 255, 0.8);
+            --section-bg: rgba(255, 255, 255, 0.5);
+            --border-color: rgba(45, 55, 72, 0.1);
+            --success-color: #48BB78;
+            --warning-color: #ECC94B;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+
+        body {
+            background-color: var(--dark-background);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation Styles */
+        header {
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: var(--header-bg);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 24px;
+            color: var(--primary);
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .logo i {
+            margin-right: 10px;
+            font-size: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-muted);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--text-light);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cta-button {
+            background: var(--primary);
+            border: 2px solid var(--primary-dark);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 0 var(--primary-dark);
+            transform: translateY(-2px);
+        }
+
+        .cta-button:hover {
+            transform: translateY(0);
+            box-shadow: 0 2px 0 var(--primary-dark);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+
+        .hero p {
+            max-width: 800px;
+            margin: 0 auto 40px;
+            color: var(--text-muted);
+            font-size: 1.2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .secondary-button {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-light);
+            border: 1px solid var(--border-color);
+            backdrop-filter: blur(10px);
+        }
+
+        .secondary-button:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        /* Features Section */
+        .features, .how-it-works, .testimonials {
+            background: var(--section-bg);
+            padding: 100px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 0 2px 10px rgba(0, 180, 219, 0.2);
+        }
+
+        .section-header p {
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .features-grid, .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .feature-card, .testimonial-card {
+            background: var(--card-background);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .feature-card:hover, .testimonial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 180, 219, 0.2);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        /* How It Works */
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .step {
+            background: var(--card-background);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 20px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.3);
+        }
+
+        /* Testimonials */
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .testimonial-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 15px;
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.3);
+        }
+
+        /* Call to Action */
+        .cta {
+            background: var(--secondary-gradient);
+            text-align: center;
+            padding: 100px 0;
+            color: white;
+        }
+
+        .cta h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .start-learning-btn {
+            display: inline-block;
+            background: #58CC02;
+            color: white;
+            padding: 20px 40px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(88, 204, 2, 0.3);
+            border: none;
+            cursor: pointer;
+            margin-top: 30px;
+        }
+
+        .start-learning-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(88, 204, 2, 0.4);
+            background: #4CAF50;
+        }
+
+        .mascot-preview {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 20px;
+            background: url('https://raw.githubusercontent.com/duolingo/duolingo-data/master/images/owl-happy.svg') no-repeat center;
+            background-size: contain;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark-background);
+            padding: 80px 0 30px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .footer-column ul {
+            list-style: none;
+        }
+
+        .footer-column a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-column a:hover {
+            color: var(--text-light);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            color: var(--text-muted);
+        }
+
+        /* Add smooth scroll behavior */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        /* Add particle background to hero section */
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+            opacity: 0.6;
+        }
+
+        /* Enhanced card animations */
+        .feature-card, .testimonial-card {
+            transform: translateY(0);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .feature-card:hover, .testimonial-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 180, 219, 0.2);
+        }
+
+        /* Add typing animation to hero text */
+        .typing-text {
+            border-right: 3px solid var(--text-light);
+            white-space: nowrap;
+            overflow: hidden;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: var(--text-light) }
+        }
+
+        /* Add scroll progress indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-gradient);
+            transform-origin: 0%;
+            z-index: 1001;
+        }
+
+        /* Add loading animation */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--dark-background);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--text-muted);
+            border-top: 5px solid var(--text-light);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Theme Toggle Button */
+        .theme-toggle {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            border: none;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+            z-index: 1000;
+        }
+
+        .theme-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(0, 180, 219, 0.4);
+        }
+
+        /* Feature Cards Styles */
+        .feature-card {
+            position: relative;
+            overflow: hidden;
+            background: var(--card-background);
+            border-radius: 20px;
+            padding: 40px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        .feature-illustration {
+            height: 200px;
+            margin-bottom: 30px;
+            position: relative;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+        }
+
+        /* Code Window Styles */
+        .code-window {
+            background: #1E1E1E;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transform: rotateX(5deg);
+            transition: transform 0.4s ease;
+        }
+
+        .window-header {
+            background: #2D2D2D;
+            padding: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .window-controls {
+            display: flex;
+            gap: 8px;
+        }
+
+        .control {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+
+        .control.red { background: #FF5F56; }
+        .control.yellow { background: #FFBD2E; }
+        .control.green { background: #27C93F; }
+
+        .code-content {
+            padding: 20px;
+            font-family: 'Fira Code', monospace;
+            color: #D4D4D4;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            position: relative;
+        }
+
+        .code-highlight {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0.05) 50%,
+                rgba(255, 255, 255, 0.1) 100%
+            );
+            animation: highlight 2s linear infinite;
+        }
+
+        /* Browser Window Styles */
+        .browser-window {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: rotateX(5deg);
+            transition: transform 0.4s ease;
+        }
+
+        .browser-header {
+            background: #F5F5F5;
+            padding: 10px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+
+        .browser-tabs {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tab {
+            padding: 5px 15px;
+            background: #E0E0E0;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            color: #666;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            background: white;
+            color: #333;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .browser-content {
+            padding: 20px;
+        }
+
+        .preview-element {
+            height: 20px;
+            background: #F0F0F0;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .preview-element.header {
+            height: 40px;
+            background: #E3F2FD;
+        }
+
+        .preview-element.nav {
+            height: 30px;
+            background: #F5F5F5;
+        }
+
+        .preview-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .preview-item {
+            height: 60px;
+            background: #E3F2FD;
+            border-radius: 4px;
+            animation: pulse 2s infinite;
+        }
+
+        /* Project Showcase Styles */
+        .project-gallery {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+        }
+
+        .project-card {
+            flex-grow: 1;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .preview-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        .tech-stack {
+            display: flex;
+            gap: 12px;
+        }
+
+        .tech-tag {
+            background: var(--primary-gradient);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1rem;
+            box-shadow: 0 4px 15px rgba(0, 180, 219, 0.2);
+        }
+
+        .preview-content {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+            flex-grow: 1;
+        }
+
+        .preview-item {
+            display: flex;
+            gap: 25px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 1px solid #e9ecef;
+        }
+
+        .preview-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color);
+        }
+
+        .preview-image {
+            width: 150px;
+            height: 150px;
+            background: #e9ecef;
+            border-radius: 12px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #f3f4f6, #e5e7eb);
+            animation: pulse 2s infinite;
+        }
+
+        .preview-info {
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .preview-info h5 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+            font-weight: 600;
+        }
+
+        .preview-info p {
+            font-size: 1.1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* Interactive Lesson Styles */
+        .code-options pre {
+            background: #2D2D2D;
+            padding: 20px;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.1rem;
+            border: 2px solid transparent;
+        }
+
+        .code-options pre:hover {
+            background: #3D3D3D;
+            transform: translateY(-2px);
+            border-color: var(--accent-color);
+        }
+
+        .code-options pre.correct {
+            background: #27C93F;
+            color: #fff;
+            border-color: #27C93F;
+            animation: correctPulse 0.5s ease;
+        }
+
+        .code-options pre.incorrect {
+            background: #FF5F56;
+            color: #fff;
+            border-color: #FF5F56;
+            animation: incorrectShake 0.5s ease;
+        }
+
+        .feedback {
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+            display: none;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .feedback.correct {
+            display: block;
+            background: rgba(39, 201, 63, 0.1);
+            color: #27C93F;
+            border: 1px solid rgba(39, 201, 63, 0.2);
+        }
+
+        .feedback.incorrect {
+            display: block;
+            background: rgba(255, 95, 86, 0.1);
+            color: #FF5F56;
+            border: 1px solid rgba(255, 95, 86, 0.2);
+        }
+
+        @keyframes correctPulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes incorrectShake {
+            0%, 100% { transform: translateX(0); }
+            25% { transform: translateX(-5px); }
+            75% { transform: translateX(5px); }
+        }
+
+        /* Community Chat Styles */
+        .community-chat {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .chat-bubbles {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .bubble {
+            background: #E3F2FD;
+            border-radius: 15px;
+            padding: 10px;
+            max-width: 80%;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .bubble:nth-child(2) {
+            margin-left: auto;
+            background: #F5F5F5;
+        }
+
+        .bubble-content {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .bubble-text {
+            height: 8px;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            width: 100%;
+            animation: pulse 2s infinite;
+        }
+
+        .chat-input {
+            height: 40px;
+            background: #F5F5F5;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            padding: 0 15px;
+        }
+
+        .input-placeholder {
+            height: 20px;
+            width: 60%;
+            background: #E0E0E0;
+            border-radius: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .send-button {
+            width: 30px;
+            height: 30px;
+            background: #4ECDC4;
+            border-radius: 50%;
+            margin-left: auto;
+        }
+
+        /* Device Showcase Styles */
+        .device-showcase {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            perspective: 1000px;
+        }
+
+        .device {
+            background: #F8F9FA;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .device.phone {
+            width: 60px;
+            height: 100px;
+        }
+
+        .device.tablet {
+            width: 100px;
+            height: 70px;
+        }
+
+        .device.laptop {
+            width: 120px;
+            height: 80px;
+        }
+
+        .device-screen {
+            position: absolute;
+            inset: 2px;
+            background: white;
+            border-radius: 8px;
+            padding: 5px;
+        }
+
+        .app-icon {
+            width: 20px;
+            height: 20px;
+            background: #E3F2FD;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        .app-window {
+            height: 20px;
+            background: #E3F2FD;
+            border-radius: 4px;
+            margin-bottom: 5px;
+            animation: pulse 2s infinite;
+        }
+
+        .browser-bar {
+            height: 15px;
+            background: #F5F5F5;
+            border-radius: 4px;
+            margin-bottom: 5px;
+        }
+
+        .browser-content {
+            height: 40px;
+            background: #E3F2FD;
+            border-radius: 4px;
+        }
+
+        /* Certificate Styles */
+        .certificate {
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transform: rotateX(5deg);
+            transition: transform 0.4s ease;
+        }
+
+        .cert-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+
+        .cert-icon {
+            width: 40px;
+            height: 40px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #FFA500;
+            font-size: 1.2rem;
+        }
+
+        .cert-title {
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .cert-content {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 5px;
+            padding: 15px;
+        }
+
+        .cert-line {
+            height: 10px;
+            background: #E0E0E0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            animation: pulse 2s infinite;
+        }
+
+        .cert-seal {
+            width: 40px;
+            height: 40px;
+            background: #FFD700;
+            border-radius: 50%;
+            margin: 15px auto 0;
+            position: relative;
+        }
+
+        .cert-seal::before {
+            content: '✓';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Animations */
+        @keyframes highlight {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+            100% { transform: translateY(0); }
+        }
+
+        @keyframes pulse {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+
+        /* Hover Effects */
+        .feature-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 20px 40px rgba(0, 180, 219, 0.2);
+        }
+
+        .feature-card:hover .code-window,
+        .feature-card:hover .browser-window,
+        .feature-card:hover .certificate {
+            transform: rotateX(0deg);
+        }
+
+        .feature-card:hover .device {
+            transform: translateY(-10px) rotateX(10deg);
+        }
+
+        /* Feature List Styles */
+        .feature-list {
+            list-style: none;
+            margin-top: 20px;
+            padding: 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .feature-list li i {
+            color: var(--accent-color);
+            font-size: 1rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .feature-illustration {
+                height: 150px;
+            }
+
+            .project-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .device-showcase {
+                gap: 10px;
+            }
+
+            .device.phone {
+                width: 40px;
+                height: 70px;
+            }
+
+            .device.tablet {
+                width: 70px;
+                height: 50px;
+            }
+
+            .device.laptop {
+                width: 90px;
+                height: 60px;
+            }
+        }
+
+        /* Features Section Styles */
+        .features {
+            padding: 100px 0;
+            background: var(--section-bg);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 60px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .feature-card {
+            background: var(--card-background);
+            border-radius: 30px;
+            padding: 60px;
+            border: 1px solid var(--border-color);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 180, 219, 0.2);
+        }
+
+        .feature-illustration {
+            height: 400px;
+            margin-bottom: 40px;
+            border-radius: 20px;
+            overflow: hidden;
+            background: var(--dark-background);
+            position: relative;
+        }
+
+        .feature-card h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Interactive Lesson Styles */
+        .interactive-lesson {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: var(--card-background);
+            color: var(--text-light);
+            position: relative;
+            overflow: hidden;
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .lesson-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: var(--card-background);
+        }
+
+        .lesson-progress {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .progress-hearts {
+            display: flex;
+            gap: 5px;
+        }
+
+        .heart {
+            color: #FF4B4B;
+            font-size: 1.2rem;
+        }
+
+        .progress-bar {
+            width: 200px;
+            height: 12px;
+            background: var(--border-color);
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: var(--accent-color);
+            width: 30%;
+            transition: width 0.3s ease;
+        }
+
+        .lesson-content {
+            padding: 30px;
+            flex-grow: 1;
+        }
+
+        .question-container {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .question-title {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .question-code {
+            background: var(--dark-background);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            font-family: monospace;
+            font-size: 1.1rem;
+            position: relative;
+        }
+
+        .code-options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+        }
+
+        .code-option {
+            background: var(--card-background);
+            border: 2px solid var(--border-color);
+            padding: 15px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .code-option:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+        }
+
+        .code-option.correct {
+            border-color: #4CAF50;
+            background: rgba(76, 175, 80, 0.1);
+        }
+
+        .code-option.incorrect {
+            border-color: #FF4B4B;
+            background: rgba(255, 75, 75, 0.1);
+        }
+
+        .option-number {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background: var(--border-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .feedback {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .feedback.correct {
+            display: block;
+            background: rgba(76, 175, 80, 0.1);
+            border: 1px solid #4CAF50;
+            color: #4CAF50;
+        }
+
+        .feedback.incorrect {
+            display: block;
+            background: rgba(255, 75, 75, 0.1);
+            border: 1px solid #FF4B4B;
+            color: #FF4B4B;
+        }
+
+        .lesson-actions {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .check-answer {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .check-answer:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .check-answer:disabled {
+            background: var(--border-color);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* Community Hub Styles */
+        .community-hub {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+
+        .hub-header {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hub-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .hub-title i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .hub-title h4 {
+            font-size: 1.5rem;
+        }
+
+        .hub-content {
+            padding: 30px;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+
+        .message-group {
+            display: flex;
+            flex-direction: column;
+            gap: 25px;
+        }
+
+        .message {
+            display: flex;
+            gap: 20px;
+        }
+
+        .message-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .message-content {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            flex-grow: 1;
+        }
+
+        .message-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .message-name {
+            font-weight: 500;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .message-time {
+            font-size: 0.9rem;
+            color: #666;
+        }
+
+        .message-text {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 1.1rem;
+        }
+
+        .message-actions {
+            display: flex;
+            gap: 15px;
+        }
+
+        .action-btn {
+            background: none;
+            border: none;
+            color: #666;
+            font-size: 1rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+        }
+
+        /* Achievement Board Styles */
+        .achievement-board {
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            background: #fff;
+        }
+
+        .board-header {
+            padding: 30px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .board-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .board-title i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .board-title h4 {
+            font-size: 1.5rem;
+        }
+
+        .achievement-stats {
+            display: flex;
+            gap: 20px;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #f8f9fa;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 1rem;
+            color: #666;
+        }
+
+        .achievement-grid {
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .achievement-item {
+            display: flex;
+            gap: 20px;
+            padding: 25px;
+            background: #f8f9fa;
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .achievement-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            color: #fff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+        }
+
+        .achievement-info {
+            flex-grow: 1;
+        }
+
+        .achievement-info h5 {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        .achievement-info p {
+            font-size: 1rem;
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .achievement-progress {
+            height: 6px;
+            background: #e9ecef;
+            border-radius: 3px;
+            overflow: hidden;
+        }
+
+        /* Feature List Styles */
+        .feature-list {
+            list-style: none;
+            margin-top: 30px;
+            padding: 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .feature-list li i {
+            color: var(--accent-color);
+            font-size: 1.2rem;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
+            .features-grid {
+                gap: 40px;
+            }
+
+            .feature-card {
+                padding: 40px;
+            }
+
+            .feature-illustration {
+                height: 300px;
+            }
+
+            .feature-card h3 {
+                font-size: 1.8rem;
+            }
+
+            .feature-card p {
+                font-size: 1rem;
+            }
+
+            .lesson-header {
+                padding: 20px;
+            }
+
+            .lesson-content {
+                padding: 20px;
+            }
+
+            .code-options {
+                grid-template-columns: 1fr;
+            }
+
+            .preview-item {
+                flex-direction: column;
+            }
+
+            .preview-image {
+                width: 100%;
+                height: 200px;
+            }
+
+            .achievement-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Travel Website Styles */
+        .travel-website {
+            height: 100%;
+            background: var(--card-background);
+            border-radius: 20px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+        }
+
+        .website-header {
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #fff;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .website-nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        .website-nav a {
+            text-decoration: none;
+            color: #666;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .website-nav a:hover,
+        .website-nav a.active {
+            color: var(--accent-color);
+        }
+
+        .website-content {
+            flex: 1;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent-color) var(--card-background);
+            position: relative;
+        }
+
+        .hero-section {
+            min-height: 300px;
+            padding: 60px 40px;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://images.unsplash.com/photo-1469474968028-56623f02e42e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-section h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .hero-section p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .search-box {
+            display: flex;
+            gap: 10px;
+            background: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            font-size: 1rem;
+            width: 300px;
+        }
+
+        .search-box button {
+            background: var(--primary-gradient);
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .search-box button:hover {
+            transform: translateY(-2px);
+        }
+
+        .featured-destinations {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            background: var(--section-bg);
+            min-height: 300px;
+        }
+
+        .destination-card {
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .destination-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .destination-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: flex-end;
+            padding: 20px;
+        }
+
+        .destination-info {
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .destination-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        .destination-info p {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            animation: fadeInOut 2s infinite;
+        }
+
+        .scroll-text {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .scroll-arrow {
+            width: 20px;
+            height: 20px;
+            border-right: 2px solid white;
+            border-bottom: 2px solid white;
+            transform: rotate(45deg);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: var(--primary-gradient);
+            transform-origin: 0%;
+            z-index: 1001;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% { opacity: 0.5; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0) rotate(45deg); }
+            40% { transform: translateY(-10px) rotate(45deg); }
+            60% { transform: translateY(-5px) rotate(45deg); }
+        }
+
+        @media (max-width: 768px) {
+            .travel-website {
+                transform: none;
+            }
+        }
+
+        /* Add new engaging styles */
+        .cta-features {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .cta-feature {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+        }
+
+        .cta-feature i {
+            font-size: 1.3rem;
+        }
+
+        .learning-path {
+            padding: 100px 0;
+            background: linear-gradient(135deg, #FFF5F5 0%, #E8F5FF 100%);
+        }
+
+        .path-steps {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 60px auto 0;
+            position: relative;
+        }
+
+        .path-steps::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+            z-index: 1;
+        }
+
+        .path-step {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            flex: 1;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--white);
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        .step-content {
+            max-width: 250px;
+            margin: 0 auto;
+        }
+
+        .step-content h3 {
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .step-content p {
+            color: var(--text-light);
+            font-size: 1rem;
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .features-header h2 {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .features-header p {
+            font-size: 1.2rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .mascot-container {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 30px;
+        }
+
+        .mascot-image {
+            width: 100%;
+            height: 100%;
+            background: url('https://raw.githubusercontent.com/duolingo/duolingo-data/master/images/owl-happy.svg') no-repeat center;
+            background-size: contain;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .mascot-bubble {
+            position: absolute;
+            top: -60px;
+            right: -20px;
+            background: white;
+            padding: 15px 25px;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .mascot-bubble::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 20px;
+            border-left: 10px solid transparent;
+            border-right: 10px solid transparent;
+            border-top: 10px solid white;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .achievements-section {
+            background: var(--white);
+            padding: 80px 0;
+        }
+
+        .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .achievement-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid #E5E5E5;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .achievement-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(88, 204, 2, 0.1);
+        }
+
+        .achievement-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .achievement-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 10px;
+            font-size: 1.3rem;
+        }
+
+        .achievement-card p {
+            color: var(--text-light);
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .achievement-progress {
+            width: 100%;
+            height: 8px;
+            background: #E5E5E5;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+
+        .achievement-fill {
+            height: 100%;
+            background: var(--primary);
+            border-radius: 4px;
+            width: 0%;
+            transition: width 1s ease;
+            animation: progressFill 1.5s ease forwards;
+        }
+
+        @keyframes progressFill {
+            from { width: 0%; }
+            to { width: var(--progress); }
+        }
+
+        .gamification-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto 0;
+            padding: 0 20px;
+        }
+
+        .gamification-card {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            border: 2px solid var(--primary);
+            position: relative;
+        }
+
+        .gamification-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: var(--primary);
+        }
+
+        .gamification-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .gamification-card h3 {
+            color: var(--text-dark);
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        .gamification-card p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Enhanced Card Styles */
+        .feature-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            border: 2px solid rgba(88, 204, 2, 0.1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            margin: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(88, 204, 2, 0.15);
+        }
+
+        .feature-card h3 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .feature-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+
+        .feature-card p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            line-height: 1.6;
+            margin-bottom: 25px;
+        }
+
+        /* Feature List Improvements */
+        .feature-list {
+            list-style: none;
+            margin-top: 30px;
+            padding: 0;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            background: rgba(88, 204, 2, 0.05);
+            border-radius: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .feature-list li:hover {
+            background: rgba(88, 204, 2, 0.1);
+            transform: translateX(5px);
+        }
+
+        .feature-list li i {
+            color: var(--primary);
+            font-size: 1.2rem;
+            background: rgba(88, 204, 2, 0.1);
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+        }
+
+        .feature-list li:hover i {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* Achievement Card Improvements */
+        .achievement-card {
+            background: var(--white);
+            border-radius: 24px;
+            padding: 40px;
+            text-align: center;
+            border: 2px solid rgba(88, 204, 2, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            margin: 20px;
+        }
+
+        .achievement-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(88, 204, 2, 0.05) 0%, rgba(88, 204, 2, 0) 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .achievement-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(88, 204, 2, 0.15);
+        }
+
+        .achievement-card:hover::before {
+            opacity: 1;
+        }
+
+        .achievement-icon {
+            width: 100px;
+            height: 100px;
+            background: rgba(88, 204, 2, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 30px;
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .achievement-icon::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border: 2px dashed var(--primary);
+            border-radius: 50%;
+            opacity: 0.5;
+            animation: spin 20s linear infinite;
+        }
+
+        .achievement-card:hover .achievement-icon {
+            background: var(--primary);
+            transform: scale(1.1);
+        }
+
+        .achievement-card:hover .achievement-icon i {
+            color: white;
+            transform: scale(1.2);
+        }
+
+        .achievement-icon i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            transition: all 0.4s ease;
+        }
+
+        .achievement-card h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .achievement-card p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        /* Progress Bar Improvements */
+        .achievement-progress {
+            width: 100%;
+            height: 10px;
+            background: rgba(88, 204, 2, 0.1);
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .achievement-fill {
+            height: 100%;
+            background: var(--primary-gradient);
+            border-radius: 20px;
+            position: relative;
+            transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .achievement-fill::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                rgba(255, 255, 255, 0) 0%,
+                rgba(255, 255, 255, 0.3) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        /* Motivation Card Improvements */
+        .motivation-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 24px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            margin: 20px;
+        }
+
+        .motivation-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, 
+                rgba(255, 255, 255, 0.1) 0%,
+                rgba(255, 255, 255, 0) 100%
+            );
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .motivation-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+        }
+
+        .motivation-card:hover::before {
+            opacity: 1;
+        }
+
+        .motivation-card i {
+            font-size: 2.5rem;
+            color: white;
+            margin-bottom: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: all 0.4s ease;
+        }
+
+        .motivation-card:hover i {
+            transform: scale(1.1) rotate(10deg);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .motivation-card h3 {
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .motivation-card h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+        }
+
+        .motivation-card p {
+            font-size: 1.1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.6;
+        }
+
+        /* Grid Layout Improvements */
+        .features-grid, .achievements-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .motivation-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            padding: 40px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        @media (max-width: 768px) {
+            .feature-card, .achievement-card, .motivation-card {
+                margin: 10px;
+                padding: 30px;
+            }
+
+            .features-grid, .achievements-grid, .motivation-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 20px;
+            }
+        }
+
+        .features-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .feature-item {
+            background: var(--card-background);
+            border-radius: 20px;
+            padding: 40px;
+            text-align: center;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-item i {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+            background: rgba(88, 204, 2, 0.1);
+            width: 80px;
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            margin: 0 auto 20px;
+        }
+
+        .feature-item h3 {
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            margin-bottom: 15px;
+        }
+
+        .feature-item p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            .features-list {
+                grid-template-columns: 1fr;
+                gap: 30px;
+                padding: 0 20px;
+            }
+
+            .feature-item {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Add loading screen -->
+    <div class="loading">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Add scroll progress indicator -->
+    <div class="scroll-progress"></div>
+
+    <!-- Add particles.js container -->
+    <div id="particles-js"></div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-code"></i>
+                    TeenCode
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#features" class="active">Features</a></li>
+                    <li><a href="#how-it-works">Learn</a></li>
+                    <li><a href="#testimonials">Community</a></li>
+                    <li><a href="#pricing">Pricing</a></li>
+                </ul>
+                <a href="#" class="cta-button">Start Coding</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Code. Create. Conquer.</h1>
+                <p>TeenCode is an interactive, gamified coding platform designed to teach teenagers and beginners how to code through fun challenges and real-world projects.</p>
+                <div class="hero-buttons">
+                    <a href="#" class="cta-button">Start Coding Now</a>
+                    <a href="#" class="cta-button secondary-button">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="features">
+        <div class="container">
+            <div class="features-header">
+                <h2>Learn HTML the Fun Way!</h2>
+                <p>Master web development through engaging lessons and real projects</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <h3>Interactive HTML Learning</h3>
+                    <p>Learn HTML through fun, interactive lessons with immediate feedback.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-graduation-cap"></i> Step-by-step lessons</li>
+                        <li><i class="fas fa-check-circle"></i> Instant feedback</li>
+                        <li><i class="fas fa-heart"></i> Life-based progress system</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Gamified Learning</h3>
+                    <p>Stay motivated with achievements, levels, and rewards as you learn.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-trophy"></i> Achievement System</li>
+                        <li><i class="fas fa-star"></i> Daily Challenges</li>
+                        <li><i class="fas fa-medal"></i> Leaderboards</li>
+                    </ul>
+                </div>
+                <div class="feature-card">
+                    <h3>Community Support</h3>
+                    <p>Connect with fellow learners and get help from experienced developers.</p>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-users"></i> Peer Learning</li>
+                        <li><i class="fas fa-comments"></i> Discussion Forums</li>
+                        <li><i class="fas fa-user-graduate"></i> Expert Mentors</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="motivation-section">
+        <div class="container">
+            <div class="features-header">
+                <h2>Why Students Love Us</h2>
+                <p>Join thousands of happy learners on their coding journey</p>
+            </div>
+            <div class="motivation-grid">
+                <div class="motivation-card">
+                    <i class="fas fa-lightbulb fa-2x"></i>
+                    <h3>Learn by Doing</h3>
+                    <p>Each lesson starts with clear explanations followed by hands-on practice. You'll learn HTML concepts and immediately apply them in real-world scenarios like building navigation menus, creating forms, and structuring web pages.</p>
+                </div>
+                <div class="motivation-card">
+                    <i class="fas fa-chart-line fa-2x"></i>
+                    <h3>Track Progress</h3>
+                    <p>Watch your skills grow with our progress tracking system. Complete lessons, earn achievements, and see your improvement through interactive projects. Your journey from basic tags to complex layouts is clearly mapped out.</p>
+                </div>
+                <div class="motivation-card">
+                    <i class="fas fa-hands-helping fa-2x"></i>
+                    <h3>Get Support</h3>
+                    <p>Never feel stuck! Our community of learners and mentors is always ready to help. Share your code, get feedback, and collaborate on projects. Learning HTML is more fun when you're part of a supportive community.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="learning-path">
+        <div class="container">
+            <div class="features-header">
+                <h2>Your Journey to HTML Mastery</h2>
+                <p>Follow our proven path to become a confident web developer</p>
+            </div>
+            <div class="path-steps">
+                <div class="path-step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h3>Start with Basics</h3>
+                        <p>Learn HTML fundamentals through fun, interactive lessons</p>
+                    </div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h3>Practice & Build</h3>
+                        <p>Apply your skills with real-world projects</p>
+                    </div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h3>Get Certified</h3>
+                        <p>Earn certificates and showcase your expertise</p>
+                    </div>
+                </div>
+                <div class="path-step">
+                    <div class="step-number">4</div>
+                    <div class="step-content">
+                        <h3>Join Community</h3>
+                        <p>Connect with other learners and grow together</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="section-header">
+                <h2>How TeenCode Works</h2>
+                <p>Our structured learning path takes you from complete beginner to confident coder in three simple steps:</p>
+            </div>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Learn the Basics</h3>
+                    <p>Start with HTML, CSS, and JavaScript fundamentals through bite-sized, interactive lessons.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Practice with Challenges</h3>
+                    <p>Strengthen your skills through progressively difficult coding challenges and earn points.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Build Real Projects</h3>
+                    <p>Apply your knowledge by building websites and applications that solve real-world problems.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2>What Our Students Say</h2>
+                <p>Hear from teenagers who have transformed their coding skills with TeenCode:</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <p>"I tried learning to code before but always got bored or confused. TeenCode makes it feel like a game, and now I've built my own website!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">JT</div>
+                        <div>
+                            <h4>Jamie T.</h4>
+                            <p>Age 15</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"The instant feedback and points system keeps me motivated. I'm now helping my friends learn to code through TeenCode too."</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">MS</div>
+                        <div>
+                            <h4>Michael S.</h4>
+                            <p>Age 16</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p>"I went from knowing nothing about coding to building my own games in just 3 months. The community is super helpful and supportive!"</p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar">AR</div>
+                        <div>
+                            <h4>Aisha R.</h4>
+                            <p>Age 14</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta">
+        <div class="container">
+            <div class="mascot-preview"></div>
+            <h2>Ready to Start Your HTML Journey?</h2>
+            <p>Learn HTML in a fun and interactive way with our gamified lessons!</p>
+            <a href="html-lessons.html" target="_blank" class="start-learning-btn">Start Learning Now!</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>TeenCode</h3>
+                    <p>Making coding fun, accessible, and effective for students of all ages.</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Learn</h3>
+                    <ul>
+                        <li><a href="#">HTML Basics</a></li>
+                        <li><a href="#">CSS Styling</a></li>
+                        <li><a href="#">JavaScript Fundamentals</a></li>
+                        <li><a href="#">Web Projects</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Resources</h3>
+                    <ul>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Tutorials</a></li>
+                        <li><a href="#">Community Forum</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 TeenCode. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Add theme toggle button before closing body tag -->
+    <button class="theme-toggle" id="theme-toggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- Add JavaScript before closing body tag -->
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Initialize particles.js with futuristic settings
+        particlesJS('particles-js', {
+            particles: {
+                number: { 
+                    value: 150,
+                    density: { enable: true, value_area: 1000 }
+                },
+                color: { 
+                    value: ['#00B4DB', '#0083B0', '#7AA2F7', '#FF6B6B', '#00FF9D', '#FF00FF']
+                },
+                shape: { 
+                    type: ['circle', 'triangle', 'edge'],
+                    stroke: {
+                        width: 0,
+                        color: '#000000'
+                    }
+                },
+                opacity: { 
+                    value: 0.8,
+                    random: true,
+                    animation: {
+                        enable: true,
+                        speed: 1.5,
+                        minimumValue: 0.2,
+                        sync: false
+                    }
+                },
+                size: { 
+                    value: 4,
+                    random: true,
+                    animation: {
+                        enable: true,
+                        speed: 3,
+                        minimumValue: 0.5,
+                        sync: false
+                    }
+                },
+                line_linked: {
+                    enable: true,
+                    distance: 150,
+                    color: '#7AA2F7',
+                    opacity: 0.6,
+                    width: 2,
+                    shadow: {
+                        enable: true,
+                        color: '#000000',
+                        blur: 10
+                    }
+                },
+                move: {
+                    enable: true,
+                    speed: 3,
+                    direction: 'none',
+                    random: true,
+                    straight: false,
+                    outMode: 'bounce',
+                    attract: {
+                        enable: true,
+                        rotateX: 800,
+                        rotateY: 1600
+                    },
+                    trail: {
+                        enable: true,
+                        length: 0.5,
+                        fill: {
+                            color: '#ffffff'
+                        }
+                    }
+                }
+            },
+            interactivity: {
+                detectOn: 'canvas',
+                events: {
+                    onHover: { 
+                        enable: true, 
+                        mode: 'repulse',
+                        parallax: {
+                            enable: true,
+                            force: 100,
+                            smooth: 15
+                        }
+                    },
+                    onClick: { 
+                        enable: true, 
+                        mode: 'push',
+                        push: {
+                            particles_nb: 6
+                        }
+                    },
+                    resize: true
+                },
+                modes: {
+                    repulse: {
+                        distance: 150,
+                        duration: 0.6,
+                        speed: 2
+                    },
+                    push: {
+                        particles_nb: 6,
+                        quantity: 4
+                    },
+                    remove: {
+                        particles_nb: 2
+                    },
+                    bubble: {
+                        distance: 200,
+                        size: 6
+                    }
+                }
+            },
+            retina_detect: true
+        });
+
+        // Remove loading screen when page is loaded
+        window.addEventListener('load', () => {
+            document.querySelector('.loading').style.display = 'none';
+        });
+
+        // Scroll progress indicator
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.querySelector('.scroll-progress').style.transform = `scaleX(${scrolled / 100})`;
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Add animation to feature cards on scroll
+        const observerOptions = {
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.feature-card, .testimonial-card').forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'all 0.6s ease-out';
+            observer.observe(card);
+        });
+
+        // Add typing animation to hero text
+        const heroText = document.querySelector('.hero h1');
+        heroText.classList.add('typing-text');
+
+        // Theme toggle functionality
+        const themeToggle = document.getElementById('theme-toggle');
+        const icon = themeToggle.querySelector('i');
+        const root = document.documentElement;
+        
+        // Check for saved theme preference
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        root.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme);
+        
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = root.getAttribute('data-theme');
+            const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+            
+            root.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateIcon(newTheme);
+        });
+        
+        function updateIcon(theme) {
+            icon.className = theme === 'light' ? 'fas fa-moon' : 'fas fa-sun';
+        }
+
+        // Fix achievement progress initialization
+        document.addEventListener('DOMContentLoaded', function() {
+            const achievements = document.querySelectorAll('.achievement-fill');
+            achievements.forEach(achievement => {
+                const progress = achievement.style.width || '0%';
+                achievement.style.setProperty('--progress', progress);
+            });
+        });
+
+        // Fix lesson interaction functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const codeOptions = document.querySelectorAll('.code-option');
+            const checkButton = document.querySelector('.check-answer');
+            const feedback = document.querySelector('.feedback');
+            const progressFill = document.querySelector('.progress-fill');
+            const hearts = document.querySelectorAll('.heart');
+            let selectedOption = null;
+            let lives = 3;
+            
+            if (!checkButton || !feedback || !progressFill || !hearts.length) return;
+
+            // Handle option selection
+            codeOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    codeOptions.forEach(opt => opt.style.borderColor = '');
+                    this.style.borderColor = 'var(--accent)';
+                    selectedOption = this;
+                    checkButton.disabled = false;
+                });
+            });
+
+            // Handle answer checking
+            checkButton.addEventListener('click', function() {
+                if (!selectedOption) return;
+
+                const isCorrect = selectedOption.getAttribute('data-correct') === 'true';
+                
+                codeOptions.forEach(opt => {
+                    opt.classList.remove('correct', 'incorrect');
+                });
+                
+                if (isCorrect) {
+                    handleCorrectAnswer();
+                } else {
+                    handleIncorrectAnswer();
+                }
+            });
+
+            function handleCorrectAnswer() {
+                selectedOption.classList.add('correct');
+                feedback.innerHTML = getCorrectFeedback();
+                feedback.className = 'feedback correct';
+                progressFill.style.width = '100%';
+                
+                codeOptions.forEach(opt => opt.style.pointerEvents = 'none');
+                checkButton.disabled = true;
+                
+                setTimeout(() => {
+                    checkButton.textContent = 'Next Lesson →';
+                    checkButton.disabled = false;
+                    checkButton.style.background = 'var(--success-color)';
+                }, 1500);
+            }
+
+            function handleIncorrectAnswer() {
+                selectedOption.classList.add('incorrect');
+                feedback.innerHTML = getIncorrectFeedback();
+                feedback.className = 'feedback incorrect';
+                
+                lives--;
+                if (lives >= 0) {
+                    hearts[lives].style.color = '#666';
+                }
+                
+                if (lives === 0) {
+                    checkButton.textContent = 'Try Again';
+                    checkButton.style.background = 'var(--accent)';
+                    codeOptions.forEach(opt => opt.style.pointerEvents = 'none');
+                }
+            }
+
+            function getCorrectFeedback() {
+                return `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-check-circle" style="color: var(--success-color)"></i>
+                        <div>
+                            <strong>Excellent!</strong>
+                            <p>That's correct! The &lt;a&gt; tag is perfect for creating hyperlinks in HTML.</p>
+                        </div>
+                    </div>
+                `;
+            }
+
+            function getIncorrectFeedback() {
+                return `
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <i class="fas fa-times-circle" style="color: var(--accent)"></i>
+                        <div>
+                            <strong>Not quite right!</strong>
+                            <p>Think about which HTML tag is specifically designed for creating clickable links.</p>
+                        </div>
+                    </div>
+                `;
+            }
+        });
+
+        // Fix scroll progress indicator
+        document.addEventListener('DOMContentLoaded', function() {
+            const progressBar = document.querySelector('.scroll-progress');
+            
+            if (!progressBar) return;
+
+            window.addEventListener('scroll', () => {
+                const winScroll = document.documentElement.scrollTop;
+                const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+                const scrolled = (winScroll / height) * 100;
+                progressBar.style.transform = `scaleX(${scrolled / 100})`;
+            });
+        });
+
+        // Fix loading screen
+        window.addEventListener('load', () => {
+            const loader = document.querySelector('.loading');
+            if (loader) {
+                loader.style.opacity = '0';
+                setTimeout(() => {
+                    loader.style.display = 'none';
+                }, 500);
+            }
+        });
+    </script>
+</body>
+</html>
