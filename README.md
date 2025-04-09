@@ -29,27 +29,37 @@ cd TeenCode
 
 2. **Create your own branch** to work safely:
 
+```bash
 git checkout -b feature/your-feature-name
+```
 
 Examples:
 
 • feature/login-page
+
 • feature/leaderboard
+
 • bugfix/responsive-layout
 
 ## Making and Saving Changes
 1. Make your changes locally.
 2. Save and add your files:
 
+```bash
 git add .
+```
 
 3. Write a clear commit message:
 
+```bash
 git commit -m "Added login form with basic validation"
+``` 
 
 4. Push your branch to GitHub:
 
+```bash
 git push origin feature/your-feature-name
+```
 
 ## Opening a Pull Request (PR)
 
@@ -68,18 +78,25 @@ git push origin feature/your-feature-name
 ## Do NOT Push Directly to **main**
 
 To keep our project stable:
+
   • Always work in branches.
+
   • All changes must go through a Pull Request.
+
   • At least 1 person must review your PR before merging.
 
 ## Best Practices
 
 • Make small, focused commits
+
 • Use meaningful commit messages
+
 • Pull changes from main before starting new work:
 
+```bash
 git checkout main
 git pull origin main
+```
 
 • Then create a new feature branch from there.
 
@@ -89,5 +106,7 @@ This project is protected under copyright. All rights reserved by TeenCode. Unau
 ## Contact
 
 For questions, message: https://t.me/+hWa_Ya0PqHM3ZTdh
+
 Happy coding, team! 💻🚀
+
 Let’s build something incredible together!
