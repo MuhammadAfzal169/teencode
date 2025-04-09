@@ -58,8 +58,11 @@ git push origin feature/your-feature-name
 • Go to the repository on GitHub.
 
 • You'll see a “Compare & pull request” button – click it.
+
 • Add a title, and explain what you did.
+
 • Submit the PR for review.
+
 • Wait for feedback and merge once approved ✅
 
 ## Do NOT Push Directly to **main**
