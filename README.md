@@ -37,7 +37,7 @@ Examples:
 • feature/leaderboard
 • bugfix/responsive-layout
 
-**Making and Saving Changes**
+## Making and Saving Changes
 1. Make your changes locally.
 2. Save and add your files:
 
@@ -51,9 +51,9 @@ git commit -m "Added login form with basic validation"
 
 git push origin feature/your-feature-name
 
-**Opening a Pull Request (PR)**
+## Opening a Pull Request (PR)
 
-After pushing your branch:
+**After pushing your branch:**
 
 • Go to the repository on GitHub.
 • You'll see a “Compare & pull request” button – click it.
@@ -61,14 +61,14 @@ After pushing your branch:
 • Submit the PR for review.
 • Wait for feedback and merge once approved ✅
 
-**Do NOT Push Directly** to **main**
+## Do NOT Push Directly to **main**
 
 To keep our project stable:
   • Always work in branches.
   • All changes must go through a Pull Request.
   • At least 1 person must review your PR before merging.
 
-**Best Practices**
+## Best Practices
 
 • Make small, focused commits
 • Use meaningful commit messages
@@ -79,10 +79,10 @@ git pull origin main
 
 • Then create a new feature branch from there.
 
-📄 **License**
+## 📄 License
 This project is protected under copyright. All rights reserved by TeenCode. Unauthorized use is prohibited.
 
-**Contact**
+## Contact
 
 For questions, message: https://t.me/+hWa_Ya0PqHM3ZTdh
 Happy coding, team! 💻🚀
